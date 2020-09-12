@@ -8,7 +8,8 @@ import os
 from flask import Flask, request, redirect, url_for, render_template, send_from_directory
 # ファイル名をチェックする関数
 from werkzeug.utils import secure_filename
-
+# 画像のダウンロード
+from flask import send_from_directory
 
 # 画像のアップロード先のディレクトリ
 UPLOAD_FOLDER = './uploads'
