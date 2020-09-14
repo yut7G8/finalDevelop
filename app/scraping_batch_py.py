@@ -2,7 +2,8 @@ import pandas as pd
 from selenium import webdriver
 import time
 import numpy as np
-
+from flask import Flask, render_template
+app = Flask(__name__)
 
 def search_mercari(search_word):
 
@@ -75,4 +76,11 @@ for i in range(len(search_word_list)):
     price_list = search_mercari(search_word_list[i])
     price_lists.append(price_list)
 
-print(price_lists)
+# result.htmlに返す
+@app.route('/')
+def price():
+    result = render_template('result.html', price_lists=price_lists)
+    return result
+
+if __name__ == "__main__":
+    app.run()
