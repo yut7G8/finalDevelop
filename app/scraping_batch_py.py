@@ -2,6 +2,8 @@ import pandas as pd
 from selenium import webdriver
 import time
 import numpy as np
+# ocrのimport
+import pyocr_1,pyocr_cv2,pyocr_filter
 from flask import Flask, render_template
 app = Flask(__name__)
 
@@ -67,7 +69,8 @@ def search_mercari(search_word):
 
 
 #このsearch_word_listに機械学習から受け渡す
-search_word_list = ['メモの魔力','サミングアップ モーム']
+search_word_list=[]
+search_word_list.append(pyocr_1.resultresult) # ocrで得たresultをsearch_word_listに格納
 price_lists = []
 
 # バッチ処理
