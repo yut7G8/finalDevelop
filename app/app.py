@@ -12,23 +12,12 @@ from werkzeug.utils import secure_filename
 from flask import send_from_directory
 from scraping_batch_py import search_mercari
 from pyocr_filter import extract_string
+from PIL import Image
 
-# 画像のアップロード先のディレクトリ
-# UPLOAD_FOLDER = './uploads/'
-# # アップロードされる拡張子の制限
-# ALLOWED_EXTENSIONS = set(['png', 'jpg'])
 
 app = Flask(__name__)
 
 # app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-
-# # 拡張子を確認する
-# def allwed_file(filename):
-#     # .があるかどうかのチェックと、拡張子の確認
-#     # OKなら１、だめなら0
-#     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
 
 # # ファイルを受け取る方法の指定
 # @app.route('/', methods=['GET', 'POST'])
@@ -76,33 +65,33 @@ def get():
 
 @app.route('/', methods=['POST'])
 def post():	
-	# ファイルのリクエストパラメータを取得
-	f = request.files.get('image')	
-	# ファイル名を取得
-	filename = secure_filename(f.filename)
-	# ファイルを保存するディレクトリを指定
-	filepath = './uploads/' + filename
-	# ファイルを保存する
-	f.save(filepath)
-    # 画像から文字列を抽出する
-    str_list = extract_string(filepath)
+	title_list = request.form.getlist('checkbox')
+	if title_list:
+		# バッチ処理
+		price_lists = []
+		for i in range(len(title_list)):
+			# 2. スクレイピング処理
+			price_list = search_mercari(title_list[i])
+			price_lists.append(price_list)
+		return render_template('result.html', price_lists=price_lists)
 
-	return render_template('index.html', flag = True, image_name = filename, image_url = filepath)
+	else:
+		# ファイルのリクエストパラメータを取得
+		f = request.files.get('file')	
+		# ファイル名を取得
+		filename = secure_filename(f.filename)
+		# ファイルを保存するディレクトリを指定
+		filepath = './uploads/' + filename
+		# ファイルを保存する
+		f.save(filepath)
+		# 画像から文字列を抽出する
+		img = Image.open(filepath)
+		extracted_str = extract_string(img)
+		str_list = extract_string.split()
+		# ファイルを削除する
+		os.remove(filepath)
 
-
-
-# # バッチ処理
-# price_lists = []
-# for i in range(len(search_word_list)):
-#     # 2. スクレイピング処理
-#     price_list = search_mercari(search_word_list[i])
-#     price_lists.append(price_list)
-
-# # result.htmlに返す
-# @app.route('/')
-# def price():
-#     result = render_template('result.html', price_lists=price_lists)
-#     return result
+		return render_template('index.html', flag = True, image_name = filename, image_url = filepath, str_list = str_list)
 
 
 if __name__ == "__main__":

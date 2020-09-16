@@ -13,17 +13,26 @@
     
     <div class="main">
         <h3>
-            <img src="../static/image/car_book_idou_tosyokan.png" alt="画像のサンプル" width="5%" height="5%">
             本の画像をアップロードしてください
-            <img src="../static/image/car_book_idou_honnya.png" alt="画像のサンプル" width="5%" height="5%">
         </h3>
         <form class="form" method = post enctype = multipart/form-data>
-            <p><input class="file" type=file name = file>
+            <p><input class="file" type=file name = file accept="image/*">
             <input class="submit-button" type = submit value = タイトルを抽出>
         </form>
         <!-- POSTのときの処理 -->
 	    {%- if flag %}
-	    <div><img src="{{ image_url }}" alt="{{ image_name }}"></div>
+        <div><img src="{{ image_url }}" alt="{{ image_name }}"></div>
+        <div>
+            {% for i,str in enumerate(str_list) %}
+            <div>
+                <label for="ck1">{{ str }}</label>
+                <input type="checkbox" id="ck" name="checkbox" value="{{ str }}">
+            </div>
+            {% endfor %}
+            <div>
+                <input type="submit" value="予測する">
+            </div>
+        </div>
         {%- endif %}
         
     </div>

@@ -4,7 +4,7 @@ from PIL import Image
 import pyocr
 import pyocr.builders
 
-def extract_string(filepath):
+def extract_string(image_org):
     # インストール済みのTesseractのパスを通す
     path_tesseract = "C:\\Program Files\\Tesseract-OCR"
     if path_tesseract not in os.environ["PATH"].split(os.pathsep):
@@ -15,7 +15,7 @@ def extract_string(filepath):
     tool = tools[0]
 
     # 原稿画像の読み込み
-    img_org = Image.open(filepath)
+    img_org = image_org.copy()
     img_rgb = img_org.convert("RGB")
     pixels = img_rgb.load()
 
