@@ -18,9 +18,14 @@
             <img src="../static/image/car_book_idou_honnya.png" alt="画像のサンプル" width="5%" height="5%">
         </h3>
         <form class="form" method = post enctype = multipart/form-data>
-            <p><input class="file" type=file name = file><br>
-            <input class="submit-button" type = submit value = 予測する>
+            <p><input class="file" type=file name = file>
+            <input class="submit-button" type = submit value = タイトルを抽出>
         </form>
+        <!-- POSTのときの処理 -->
+	    {%- if flag %}
+	    <div><img src="{{ image_url }}" alt="{{ image_name }}"></div>
+        {%- endif %}
+        
     </div>
 
     <div class="footer">  
