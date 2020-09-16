@@ -5,7 +5,7 @@ import os
 # redirect  ページの移動
 # url_for アドレス遷移
 # send_from_directory 画像のダウンロード
-from flask import Flask, request, redirect, url_for, render_template, send_from_directory
+from flask import Flask, flash, request, redirect, url_for, render_template, send_from_directory
 # ファイル名をチェックする関数
 from werkzeug.utils import secure_filename
 # 画像のダウンロード
