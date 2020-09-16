@@ -1,51 +1,15 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/stylesheet.css">
-    <title>Book Price Predictor</title>
-</head>
-<body>
-    <div class="header">
-        <div class="header-logo">HAIT-Lab </div>
-    </div>
-    
-    <div class="main">
-        <h3>
-            本の画像をアップロードしてください
-        </h3>
-        <form class="form" method = post enctype = multipart/form-data>
-            <p><input class="file" type=file name = file accept="image/*">
-            <input class="submit-button" type = submit value = タイトルを抽出>
-        </form>
-        <!-- POSTのときの処理 -->
-	    {%- if flag %}
-        <div><img src="{{ image_url }}" alt="{{ image_name }}"></div>
-        <div>
-            {% for i,str in enumerate(str_list) %}
-            <div>
-                <label for="ck1">{{ str }}</label>
-                <input type="checkbox" id="ck" name="checkbox" value="{{ str }}">
-            </div>
-            {% endfor %}
-            <div>
-                <input type="submit" value="予測する">
-            </div>
-        </div>
-        {%- endif %}
+{% extends "layout.html" %}
+{% block content %}
+    <h3>
+        本の画像をアップロードしてください
+    </h3>
+    <form class="form" method = post enctype = multipart/form-data>
+        <p><input class="file" type=file name = file accept="image/*">
+        <input class="submit-button" type = submit value = タイトルを抽出>
+    </form>
+    <!-- POSTのときの処理 -->
+    {%- if flag %}
+    <div><img src="{{ image_url }}" alt="{{ image_name }}"></div>
+    {%- endif %}
         
-    </div>
-
-    <div class="footer">  
-        <div class="footer-logo">HAIT-Lab</div>
-        <div class="footer-list">
-            <ul>
-                <li>@lelouch37</li>
-                <li>@~~~~~</li>
-                <li>@~~~~~</li>
-            </ul>
-        </div>
-    </div>
-</body>
-</html>
+{% endblock %}
