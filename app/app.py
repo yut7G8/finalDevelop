@@ -11,6 +11,8 @@ from werkzeug.utils import secure_filename
 # 画像のダウンロード
 from flask import send_from_directory
 
+import scraping_batch_py
+
 # 画像のアップロード先のディレクトリ
 UPLOAD_FOLDER = './uploads'
 # アップロードされる拡張子の制限
@@ -60,6 +62,19 @@ def uploads_file():
 # ファイルを表示する
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
+# バッチ処理
+price_lists = []
+for i in range(len(search_word_list)):
+    # 2. スクレイピング処理
+    price_list = search_mercari(search_word_list[i])
+    price_lists.append(price_list)
+
+# result.htmlに返す
+@app.route('/')
+def price():
+    result = render_template('result.html', price_lists=price_lists)
+    return result
 
 
 if __name__ == "__main__":

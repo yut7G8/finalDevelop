@@ -71,19 +71,8 @@ def search_mercari(search_word):
 #このsearch_word_listに機械学習から受け渡す
 search_word_list=[]
 search_word_list.append(pyocr_filter.result) # ocrで得たresultをsearch_word_listに格納
-price_lists = []
 
-# バッチ処理
-for i in range(len(search_word_list)):
-    # 2. スクレイピング処理
-    price_list = search_mercari(search_word_list[i])
-    price_lists.append(price_list)
 
-# result.htmlに返す
-@app.route('/')
-def price():
-    result = render_template('result.html', price_lists=price_lists)
-    return result
 
 if __name__ == "__main__":
     app.run()
