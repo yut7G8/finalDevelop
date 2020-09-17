@@ -60,7 +60,8 @@ def select():
 		# 2. スクレイピング処理
 		price_list = search_mercari(title_list[i])
 		price_lists.append(price_list)
-	return render_template('result.html', price_lists=price_lists)
+	book_dict = { title:price for title,price in zip(title_list,price_lists) }
+	return render_template('result.html', book_dict = book_dict)
 
 @app.route('/uploads/<filename>')
 # ファイルを表示する

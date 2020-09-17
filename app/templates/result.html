@@ -1,12 +1,23 @@
 {% extends "layout.html" %}
 {% block content %}
     <!-------- ここを変える ----->
-    <html>
-        <head><title>Gチーム最終開発</title></head>
-        <h1><b><font color="red">予測結果</font></b></h1>
-        <body>
-            <font size="4">アップロードされた本の相場価格は{{ price_lists }}円です。</font><br>
-        </body>
-    </html>
+
+    <h3><b><font color="red">予測結果</font></b></h3>
+    <div>
+        <font size="4">アップロードされた本の相場価格を予測しました。</font><br>
+        <table border="1" align="center">
+            <tr>
+                <th>本のタイトル</th>
+                <th>値段（円）</th>
+            </tr>
+            {% for key in book_dict %}
+            <tr>
+                <td>{{ key }}</td>
+                <td>{{ book_dict[key] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    
     <!--- ------------------- -->
 {% endblock %}
