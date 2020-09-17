@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h3>
+        本のタイトルを選択してください
+    </h3>
+    
+    <!-- POSTのときの処理 -->
+    {%- if flag %}
+    <div><img src="{{ image_url }}" alt="{{ image_name }}"></div>
+    <form action="/selection" method="POST" enctype="multipart/form-data">
+        {% for str in str_list %}
+        <div>
+            <label for="ck1">{{ str }}</label>
+            <input type="checkbox" id="ck" name="checkbox" value="{{ str }}">
+        </div>
+        {% endfor %}
+        <div>
+            <input type="submit" value="予測する">
+        </div>
+    </form>
+    {%- endif %}
+        
+{% endblock %}
