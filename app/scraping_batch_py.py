@@ -63,8 +63,9 @@ def search_mercari(search_word):
     arr = np.array(df[df['Price'] == df["Price"].quantile(0.75)].iloc[0])
     price_list = [arr[0], int(arr[1])]
 
-    return price_list
+    return price_list[1]
 
 
 #このsearch_word_listに機械学習から受け渡す
 search_word_list=[]
+# print(search_mercari('concept building and discussion'))
