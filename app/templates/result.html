@@ -1,8 +1,12 @@
 {% extends "layout.html" %}
 {% block content %}
     <!-------- ここを変える ----->
-    <h3>
-        本の販売価格{{ price_lists }}を予測しました。
-    </h3>
+    <html>
+        <head><title>Gチーム最終開発</title></head>
+        <h1><b><font color="red">予測結果</font></b></h1>
+        <body>
+            <font size="4">アップロードされた本の相場価格は{{ price_lists }}円です。</font><br>
+        </body>
+    </html>
     <!--- ------------------- -->
 {% endblock %}
