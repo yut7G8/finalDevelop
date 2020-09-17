@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h3>
+        本の画像をアップロードしてください
+    </h3>
+    <form class="form" method = post enctype = multipart/form-data>
+        <p><input class="file" type=file name = file accept="image/*">
+        <input class="submit-button" type = submit value = タイトルを抽出>
+    </form>
+    <!-- POSTのときの処理 -->
+    {%- if flag %}
+    <div><img src="{{ image_url }}" alt="{{ image_name }}"></div>
+    {%- endif %}
+        
+{% endblock %}
