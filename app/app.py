@@ -30,24 +30,26 @@ def get():
 
 @app.route('/', methods=['POST'])
 def post():
-		# ファイルのリクエストパラメータを取得
-		f = request.files['file']	
-		# ファイル名を取得
-		filename = secure_filename(f.filename)
-		# ファイルを保存するディレクトリを指定
-		filepath = './uploads/' + filename
-		# ファイルを保存する
-		f.save(filepath)
+	# ファイルのリクエストパラメータを取得
+	f = request.files['file']	
+	# ファイル名を取得
+	filename = secure_filename(f.filename)
+	# ファイルを保存するディレクトリを指定
+	filepath = './uploads/' + filename
+	# ファイルを保存する
+	f.save(filepath)
+	
+	# 画像から文字列を抽出する
+	img = Image.open(filepath)
+	extracted_str = extract_string(img)
+	# 改行区切りにする
+	str_list = extracted_str.split('\n')
+	# 余分な文字を削除
+	
+	# # ファイルを削除する
+	# os.remove(filepath)
 
-		
-		# 画像から文字列を抽出する
-		img = Image.open(filepath)
-		extracted_str = extract_string(img)
-		str_list = extracted_str.split()
-		# # ファイルを削除する
-		# os.remove(filepath)
-
-		return render_template('selection.html', flag = True, image_name = filename, image_url = filepath, str_list = str_list)
+	return render_template('selection.html', flag = True, image_name = filename, image_url = filepath, str_list = str_list)
 
 @app.route('/selection', methods=['POST'])
 def select():

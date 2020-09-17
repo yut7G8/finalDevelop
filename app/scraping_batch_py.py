@@ -2,6 +2,8 @@ import pandas as pd
 from selenium import webdriver
 import time
 import numpy as np
+# import chromedriver_binary
+from webdriver_manager.chrome import ChromeDriverManager
 
 def search_mercari(search_word):
 
@@ -18,7 +20,7 @@ def search_mercari(search_word):
     # この引数にchromedriverのパスを置く
     # デプロイの方法によって書き方は違う
     # https://qiita.com/memakura/items/20a02161fa7e18d8a693 参照
-    browser = webdriver.Chrome()
+    browser = webdriver.Chrome(ChromeDriverManager().install())
 
     # 起動時に時間がかかるため、5秒スリープ
     time.sleep(5)
