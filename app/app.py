@@ -45,11 +45,14 @@ def post():
 	# 改行区切りにする
 	str_list = extracted_str.split('\n')
 	# 余分な文字を削除
-	
+	str_list_2 = []
+	for str in str_list:
+		if str != '[ ]+' and len(str) > 1:
+			str_list_2.append(str)
 	# # ファイルを削除する
 	# os.remove(filepath)
 
-	return render_template('selection.html', flag = True, image_name = filename, image_url = filepath, str_list = str_list)
+	return render_template('selection.html', flag = True, image_name = filename, image_url = filepath, str_list = str_list_2)
 
 @app.route('/selection', methods=['POST'])
 def select():
@@ -60,7 +63,8 @@ def select():
 		# 2. スクレイピング処理
 		price_list = search_mercari(title_list[i])
 		price_lists.append(price_list)
-	return render_template('result.html', price_lists=price_lists)
+	book_dict = { title:price for title,price in zip(title_list,price_lists) }
+	return render_template('result.html', book_dict = book_dict)
 
 @app.route('/uploads/<filename>')
 # ファイルを表示する

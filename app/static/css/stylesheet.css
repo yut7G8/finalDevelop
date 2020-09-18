@@ -1,5 +1,12 @@
 body {
-  font-family: "Avenir Next";
+  background-image:url("../images/bookshelf_image.png");
+  background-color:rgba(255,255,255,0.8);
+  background-blend-mode:lighten;
+  font-family: "Helvetica Neue", "Arial", sans-serif;
+  font-weight: 100;
+  font-variant-ligatures: normal;
+  font-size: 2rem;
+  letter-spacing: 1px;
 }
 
 li {
@@ -7,20 +14,22 @@ li {
 }
 
 .header {
-  background-color: #c1ff80;
+  background-color: #12d0e9a1;
   color: #fff;
-  height: 90px;
+  height: 100px;
+  opacity:0.8;
 }
 
 .header-logo {
-  float: left;
-  font-size: 36px;
+  font-size: 50px;
   padding: 20px 40px;
+  font-style: italic;
 }
 
 .main {
   text-align: center;
   padding: 100px 80px;
+  color: #505353
 }
 
 input {
@@ -29,7 +38,7 @@ input {
   margin-top: 10px;
   margin-bottom: 30px;
   padding: 20px;
-  font-size: 18px;
+  font-size: 20px;
   border: 1px solid #dee7ec;
 }
 
@@ -37,6 +46,7 @@ input {
   float: center;
   background-color: #dee7ec;
   color: #889eab;
+  transition:0.5s;
 }
 
 input[type="submit"] :hover {
@@ -44,19 +54,24 @@ input[type="submit"] :hover {
 }
 
 .footer {
-  background-color: #c4f7f2;
-  color: #2f5167;
-  height: 120px;
+  background-color: #2f5167;
+  color: white ;
+  height: 200px;
   padding: 40px;
+  opacity:0.8;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .footer-logo {
   float: left;
-  font-size: 32px;
+  font-size: 50px;
+  font-style: italic;
 }
 
 .footer-list {
   float: right;
+  font-size: 15px;
 }
 
 .footer-list li {
