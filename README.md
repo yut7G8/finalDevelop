@@ -5,7 +5,11 @@
 
 **[HAIT_Lab_Primaryコース](https://hait-lab.com/)4期 Gチームメンバー**
 
-yut7G8, leouch37, shinnosuke-matsuo
+**yut7G8**: チームリーダー, バックエンド
+
+**leouch37**: フロントエンド, バックエンドとの連携
+
+**shinnosuke-matsuo**: バックエンド(スクレイピング処理)
 
 ## 開発背景
 本処分の手段として、フリマアプリで売ることは主流になりつつあり、そのような場合、毎度Amazonやメルカリで適正価格を調べなければならない。
